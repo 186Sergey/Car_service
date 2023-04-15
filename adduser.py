@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import messagebox as mb
 from tkinter import ttk
 import sqlite3 as sq
-
+from password_strength import PasswordPolicy
     
 
 with  sq.connect("db/avtoservise.db") as conn:
@@ -12,7 +12,7 @@ with  sq.connect("db/avtoservise.db") as conn:
                 surname TEXT,
                 username TEXT, 
                 password TEXT)''')
-    
+   
 
 def save_users():
     """
@@ -25,16 +25,16 @@ def save_users():
     cur.execute('''INSERT INTO users(surname, username, password) 
                    VALUES (?, ?, ?)''', 
                    (surname, username, passwd))
-          
+
     if len(passwd) < 6:
-        mb.showinfo("Сохранение", f"Данные не сохранены {username}!\nДлина пароля должа\
+        mb.showinfo("Сохранение", f"Данные не сохранены {username}!\nДлина пароля должна\
             быть не менее 6 символов.") 
         return False
     else:
         mb.showinfo("Сохранение", f"Данные записаны в базу данных {username}!")
     conn.commit()
-    root.destroy()
-
+    root.destroy()                 
+            
 
 root = tk.Tk()
 root.title("Регистрация нового работника")
@@ -57,7 +57,7 @@ ent_surname_user.config(font=("Times New Roman", 12), foreground="grey", width=3
 lbl_name_user = ttk.Label(root, text="Имя")
 lbl_name_user.grid(row=2, column=0, padx=15, pady=10, sticky=tk.W)
 lbl_name_user.config(font=("Times New Roman", 12, "bold"))
-ent_name_user = ttk.Entry(root, validate="key")
+ent_name_user = ttk.Entry(root)
 ent_name_user.grid(row=2, column=1, padx=15, pady=10)
 ent_name_user.config(font=("Times New Roman", 12), foreground="grey", width=30)
 
