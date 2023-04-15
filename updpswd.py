@@ -3,7 +3,7 @@ from tkinter import messagebox as mb
 from tkinter import ttk
 import sqlite3 as sq
 
-    
+
 
 with  sq.connect("db/avtoservise.db") as conn:
     cur = conn.cursor()
@@ -12,7 +12,7 @@ with  sq.connect("db/avtoservise.db") as conn:
                 surname TEXT,
                 username TEXT, 
                 password TEXT)''')
-    
+
 
 def fargout():
     """
@@ -24,7 +24,7 @@ def fargout():
     cur.execute("""UPDATE users SET password = ? WHERE surname = ?""", (passwd, surname))
     
     if len(passwd) < 6:
-        mb.showinfo("Сохранение", f"Длина пароля должна быть не менее 6 символов.") 
+        mb.showinfo("Восстановление", "Длина пароля должна быть не менее 6 символов.") 
         return False
     else:
         mb.showinfo("Восстановление", "Пароль изменён!")
