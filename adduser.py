@@ -16,8 +16,10 @@ with  sq.connect("db/avtoservise.db") as conn:
 
 def save_users():
     """
-    The function adds user data to the database. Also checks the password for validity.\n
-    Функция добавляет данные о пользователях в БД. Также проверяет пароль на валидность.
+    The function adds user data to the database. Also checks the password for validity
+        and whether there is such a user in the database.
+    Функция добавляет данные о пользователях в БД. Также проверяет пароль на валидность
+        и есть ли такой пользователь в БД.
     """
     surname = ent_surname_user.get()
     username = ent_name_user.get()
@@ -25,6 +27,12 @@ def save_users():
     cur.execute('''INSERT INTO users(surname, username, password) 
                    VALUES (?, ?, ?)''', 
                    (surname, username, passwd))
+    x = f"SELECT surname FROM users WHERE surname != '{surname}';"
+    cur.execute(x)
+    
+    if not cur.fetchall():
+        mb.showinfo("Сохранение", f"Такой пользователь уже есть!") 
+        return False
 
     if len(passwd) < 6:
         mb.showinfo("Сохранение", f"Данные не сохранены {username}!\nДлина пароля должна\
