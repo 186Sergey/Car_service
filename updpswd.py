@@ -44,10 +44,22 @@ lbl_new_user = ttk.Label(root, text="Восстановление пароля")
 lbl_new_user.grid(row=0, column=0, columnspan=2, padx=55, pady=15)
 lbl_new_user.config(font=("Times New Roman", 18, "bold"), foreground="red")
 
+def validate(input):
+    """
+    The function checks the Entry field for input characters\n
+    input (_type_): _description_ the user enters from the keyboard\n
+    _type_: _description_ letters must be entered\n
+    Функция проверяет поле Entry на вводимые символы\n
+    input (_type_): _description_ пользователь вводит с клавиатуры\n
+    _type_: _description_ должны быть введены буквы
+    """
+    return input.isalpha()
+valid = root.register(validate)
+
 lbl_surname_user = ttk.Label(root, text="Фамилия")
 lbl_surname_user.grid(row=1, column=0, padx=15, pady=10, sticky=tk.W)
 lbl_surname_user.config(font=("Times New Roman", 12, "bold"))
-ent_surname_user = ttk.Entry(root)
+ent_surname_user = ttk.Entry(root, validate='key',validatecommand=(valid,'%S'))
 ent_surname_user.grid(row=1, column=1, padx=15, pady=10)
 ent_surname_user.config(font=("Times New Roman", 12), foreground="grey", width=30)
 
