@@ -16,10 +16,10 @@ with  sq.connect("db/avtoservise.db") as conn:
 
 def save_users():
     """
-    The function adds user data to the database. Also checks the password for validity
-        and whether there is such a user in the database.
-    Функция добавляет данные о пользователях в БД. Также проверяет пароль на валидность
-        и есть ли такой пользователь в БД.
+    The function adds user data to the database. Checks the password for complexity (number\
+        input characters.)\n
+    Функция добавляет данные о пользователях в БД. Проверяет пароль на сложность (количество\
+        вводимых символов.)
     """
     surname = ent_surname_user.get()
     username = ent_name_user.get()
@@ -27,15 +27,10 @@ def save_users():
     cur.execute('''INSERT INTO users(surname, username, password) 
                    VALUES (?, ?, ?)''', 
                    (surname, username, passwd))
-    x = f"SELECT surname FROM users WHERE surname != '{surname}';"
-    cur.execute(x)
-    
-    if not cur.fetchall():
-        mb.showinfo("Сохранение", "Такой пользователь уже есть!") 
-        return False
-    if len(passwd) < 6:
+
+    if len(passwd) < 8:
         mb.showinfo("Сохранение", f"Данные не сохранены {username}!\nДлина пароля должна\
-            быть не менее 6 символов.") 
+            быть не менее 8 символов.") 
         return False
     else:
         mb.showinfo("Сохранение", f"Данные записаны в базу данных {username}!")
@@ -55,12 +50,10 @@ lbl_new_user.config(font=("Times New Roman", 18, "bold"), foreground="red")
 
 def validate(input):
     """
-    The function checks the Entry field for input characters\n
-    input (_type_): _description_ the user enters from the keyboard\n
-    _type_: _description_ letters must be entered\n
-    Функция проверяет поле Entry на вводимые символы\n
-    input (_type_): _description_ пользователь вводит с клавиатуры\n
-    _type_: _description_ должны быть введены буквы
+    The function checks the Entry field for characters entered by the user from the keyboard,\
+        letters must be entered.\n
+    Функция проверяет поле Entry на вводимые символы пользователем с клавиатуры,\
+        должны быть введены буквы.
     """
     return input.isalpha()
 valid = root.register(validate)
@@ -87,7 +80,7 @@ ent_password_user.grid(row=3, column=1, padx=15, pady=10)
 ent_password_user.config(font=("Times New Roman", 12), foreground="#000000", width=30)
 
 lbl_new_user = ttk.Label(root, text="* Пароль должен состоять из строчных и заглавных букв,\
-цифр и спецсимволов")
+цифр и символов")
 lbl_new_user.grid(row=4, column=0, columnspan=2, padx=35, pady=5, sticky=tk.E)
 lbl_new_user.config(font=("Times New Roman", 8, "bold"))
 

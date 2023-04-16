@@ -4,32 +4,25 @@ from tkinter import ttk
 import sqlite3 as sq
 
 
-with  sq.connect("db/avtoservise.db") as conn:
-    cur = conn.cursor()
-    cur.execute('''CREATE TABLE IF NOT EXISTS users
-                (id INTEGER PRIMARY KEY, 
-                surname TEXT,
-                username TEXT, 
-                password TEXT)''')
-
-
 
 def verification_users():
     """
-    The function adds user data to the database. Also checks the password for validity.\n
-    Функция добавляет данные о пользователях в БД. Также проверяет пароль на валидность.
+    The function checks the user's login and password when logging in.\n
+    Функция проверяет логин и пароль пользователя при входе в систему.
     """
-    surname = ent_surname_user.get()
-    username = ent_name_user.get()
-    passwd = ent_password_user.get()
-    x = f"SELECT surname, username, password FROM users WHERE surname == '{surname}' AND username == '{username}' AND password == '{passwd}';"
-    cur.execute(x)
-        
-    if not cur.fetchall():
-        mb.showinfo("Регистрация работника", "Логин или пароль не совпадает!")
-    else:    
-        mb.showinfo("Регистрация работника", "Вы авторизованы!")
-        root.destroy()               
+    with  sq.connect("db/avtoservise.db") as conn:
+        cur = conn.cursor()
+        surname = ent_surname_user.get()
+        username = ent_name_user.get()
+        passwd = ent_password_user.get()
+        x = f"SELECT surname, username, password FROM users WHERE surname == '{surname}' AND username == '{username}' AND password == '{passwd}';"
+        cur.execute(x)
+            
+        if not cur.fetchall():
+            mb.showinfo("Регистрация работника", "Логин или пароль не совпадает!")
+        else:    
+            mb.showinfo("Регистрация работника", "Вы авторизованы!")
+            root.destroy()               
             
 
 root = tk.Tk()
@@ -43,17 +36,27 @@ lbl_new_user = ttk.Label(root, text="Авторизация работника")
 lbl_new_user.grid(row=0, column=0, columnspan=2, padx=55, pady=15)
 lbl_new_user.config(font=("Times New Roman", 18, "bold"), foreground="red")
 
+def validate(input):
+    """
+    The function checks the Entry field for characters entered by the user from the keyboard,\
+        letters must be entered.\n
+    Функция проверяет поле Entry на вводимые символы пользователем с клавиатуры,\
+        должны быть введены буквы.
+    """
+    return input.isalpha()
+valid = root.register(validate)
+
 lbl_surname_user = ttk.Label(root, text="Фамилия")
 lbl_surname_user.grid(row=1, column=0, padx=15, pady=10, sticky=tk.W)
 lbl_surname_user.config(font=("Times New Roman", 12, "bold"))
-ent_surname_user = ttk.Entry(root)
+ent_surname_user = ttk.Entry(root, validate='key',validatecommand=(valid,'%S'))
 ent_surname_user.grid(row=1, column=1, padx=15, pady=10)
 ent_surname_user.config(font=("Times New Roman", 12), foreground="grey", width=30)
 
 lbl_name_user = ttk.Label(root, text="Имя")
 lbl_name_user.grid(row=2, column=0, padx=15, pady=10, sticky=tk.W)
 lbl_name_user.config(font=("Times New Roman", 12, "bold"))
-ent_name_user = ttk.Entry(root)
+ent_name_user = ttk.Entry(root, validate='key',validatecommand=(valid,'%S'))
 ent_name_user.grid(row=2, column=1, padx=15, pady=10)
 ent_name_user.config(font=("Times New Roman", 12), foreground="grey", width=30)
 

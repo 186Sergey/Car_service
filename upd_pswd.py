@@ -5,32 +5,25 @@ import sqlite3 as sq
 
 
 
-with  sq.connect("db/avtoservise.db") as conn:
-    cur = conn.cursor()
-    cur.execute('''CREATE TABLE IF NOT EXISTS users
-                (id INTEGER PRIMARY KEY, 
-                surname TEXT,
-                username TEXT, 
-                password TEXT)''')
-
-
-def fargout():
+def forgot():
     """
     The function updates the password if the user has forgotten it.\n
     Функция обновляет пароль, если пользователь забыл его.
     """
-    surname = ent_surname_user.get()
-    passwd = ent_password_user.get()
-    cur.execute("""UPDATE users SET password = ? WHERE surname = ?""", (passwd, surname))
-    
-    if len(passwd) < 6:
-        mb.showinfo("Восстановление", "Длина пароля должна быть не менее 6 символов.") 
-        return False
-    else:
-        mb.showinfo("Восстановление", "Пароль изменён!")
-    
-    conn.commit()    
-    root.destroy()
+    with  sq.connect("db/avtoservise.db") as conn:
+        cur = conn.cursor()
+        surname = ent_surname_user.get()
+        passwd = ent_password_user.get()
+        cur.execute("""UPDATE users SET password = ? WHERE surname = ?""", (passwd, surname))
+        
+        if len(passwd) < 8:
+            mb.showinfo("Восстановление", "Длина пароля должна быть не менее 8 символов.") 
+            return False
+        else:
+            mb.showinfo("Восстановление", "Пароль изменён!")
+        
+        conn.commit()    
+        root.destroy()
 
 
 root = tk.Tk()
@@ -46,12 +39,10 @@ lbl_new_user.config(font=("Times New Roman", 18, "bold"), foreground="red")
 
 def validate(input):
     """
-    The function checks the Entry field for input characters\n
-    input (_type_): _description_ the user enters from the keyboard\n
-    _type_: _description_ letters must be entered\n
-    Функция проверяет поле Entry на вводимые символы\n
-    input (_type_): _description_ пользователь вводит с клавиатуры\n
-    _type_: _description_ должны быть введены буквы
+    The function checks the Entry field for characters entered by the user from the keyboard,\
+        letters must be entered.\n
+    Функция проверяет поле Entry на вводимые символы пользователем с клавиатуры,\
+        должны быть введены буквы.
     """
     return input.isalpha()
 valid = root.register(validate)
@@ -75,7 +66,7 @@ lbl_new_user = ttk.Label(root, text="* Пароль должен состоят�
 lbl_new_user.grid(row=4, column=0, columnspan=2, padx=35, pady=5, sticky=tk.E)
 lbl_new_user.config(font=("Times New Roman", 8, "bold"))
 
-btn_submit_db = ttk.Button(root, text="Обновить", width=25, command=fargout)
+btn_submit_db = ttk.Button(root, text="Обновить", width=25, command=forgot)
 btn_submit_db.grid(row=5, column=1, padx=35, pady=20, sticky=tk.NE)
 
 
