@@ -21,7 +21,6 @@ def forgot():
             return False
         else:
             mb.showinfo("Восстановление", "Пароль изменён!")
-        
         conn.commit()    
         root.destroy()
 
@@ -31,7 +30,6 @@ root.title("Восстановление пароля")
 root.geometry("480x250")
 root.resizable(False, False)
 root.iconphoto(True, tk.PhotoImage(file="logo.png"))
-
 
 lbl_new_user = ttk.Label(root, text="Восстановление пароля")
 lbl_new_user.grid(row=0, column=0, columnspan=2, padx=55, pady=15)

@@ -6,6 +6,14 @@ import sqlite3 as sql
 
 current_date = date.today().strftime("%d-%m-%Y")
 
+with sql.connect("db/avtoservise.db") as conn:
+    cur = conn.cursor()
+    cur.execute('''CREATE TABLE IF NOT EXISTS persone(id integer primary key, surname TEXT, 
+            username TEXT,  patronymic TEXT, city TEXT, street TEXT, phfone INTEGER, email TEXT,
+            sts integer, marka_auto text, model text, gos_nomer text, odometr integer, mydata text,
+            description text)''')
+    conn.commit()
+
 
 def client():
     '''Функция о сведениях о клиенте и транспортном средстве
@@ -36,20 +44,20 @@ def client():
     mb.showinfo("Всё получилось", "Данные записаны в базу данных!")
     root.destroy()
 
-
-with sql.connect("db/avtoservice.db") as conn:
-    cur = conn.cursor()
-    cur.execute('''CREATE TABLE IF NOT EXISTS persone(id integer primary key, surname TEXT, 
-            username TEXT,  patronymic TEXT, city TEXT, street TEXT, phfone INTEGER, email TEXT,
-            sts integer, marka_auto text, model text, gos_nomer text, odometr integer, mydata text,
-            description text)''')
-    conn.commit()
-
 root = tk.Tk()
 root.title("Сведения о клиенте и транспортном средстве")
 root.geometry("1200x550+50+200")
 root.resizable(False, False)
-root.iconphoto(True, tk.PhotoImage(file="service.png"))
+
+def validate(input):
+    """
+    The function checks the Entry field for characters entered by the user from the keyboard,\
+        letters must be entered.\n
+    Функция проверяет поле Entry на вводимые символы пользователем с клавиатуры,\
+        должны быть введены буквы.
+    """
+    return input.isalpha()
+valid = root.register(validate)
 
 topframe = tk.Frame(root)
 topframe.pack(side=tk.TOP)
@@ -67,7 +75,7 @@ service_detal.grid(row=1, column=0, columnspan=6, padx=10, pady=20)
 
 surname = tk.Label(service_detal, text="Фамилия")
 surname.grid(row=2, column=0, sticky=tk.W, padx=10, pady=8)
-entry_surname = tk.Entry(service_detal, width=30)
+entry_surname = tk.Entry(service_detal, width=30, validate="key",validatecommand=(valid,"%S"))
 entry_surname.grid(row=2, column=1, sticky=tk.W, padx=10, pady=8)
 
 '''ИМЯ'''
@@ -75,7 +83,7 @@ entry_surname.grid(row=2, column=1, sticky=tk.W, padx=10, pady=8)
 
 username = tk.Label(service_detal, text="Имя")
 username.grid(row=2, column=2, sticky=tk.W, padx=10, pady=8)
-entry_username = tk.Entry(service_detal, width=30)
+entry_username = tk.Entry(service_detal, width=30, validate="key",validatecommand=(valid,"%S"))
 entry_username.grid(row=2, column=3, sticky=tk.W, padx=10, pady=8)
 
 '''ОТЧЕСТВО'''
@@ -83,14 +91,14 @@ entry_username.grid(row=2, column=3, sticky=tk.W, padx=10, pady=8)
 
 patronymic = tk.Label(service_detal, text="Отчество")
 patronymic.grid(row=2, column=4, sticky=tk.W, padx=10, pady=8)
-entry_patronymic = tk.Entry(service_detal, width=30)
+entry_patronymic = tk.Entry(service_detal, width=30, validate="key",validatecommand=(valid,"%S"))
 entry_patronymic.grid(row=2, column=5, sticky=tk.W, padx=10, pady=8)
 
 '''ГОРОД'''
 
 city = tk.Label(service_detal, text="Город")
 city.grid(row=3, column=0, sticky=tk.W, padx=10, pady=8)
-entry_city = tk.Entry(service_detal, width=30)
+entry_city = tk.Entry(service_detal, width=30, validate="key",validatecommand=(valid,"%S"))
 entry_city.grid(row=3, column=1, sticky=tk.W, padx=10, pady=8)
 
 '''УЛИЦА'''
@@ -126,7 +134,7 @@ entry_sts.grid(row=5, column=1, sticky=tk.W, padx=10, pady=8)
 
 marka_auto = tk.Label(service_detal, text="Марка *")
 marka_auto.grid(row=5, column=2, sticky=tk.W, padx=10, pady=8)
-entry_marka_auto = tk.Entry(service_detal, width=30)
+entry_marka_auto = tk.Entry(service_detal, width=30, validate="key",validatecommand=(valid,"%S"))
 entry_marka_auto.grid(row=5, column=3, sticky=tk.W, padx=10, pady=8)
 
 '''Модель'''
