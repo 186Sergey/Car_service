@@ -27,7 +27,7 @@ def verification_users():
 
 root = tk.Tk()
 root.title("Авторизация")
-root.geometry("450x300")
+root.geometry("470x300")
 root.resizable(False, False)
 root.iconphoto(True, tk.PhotoImage(file="logo.png"))
 
@@ -49,14 +49,14 @@ valid = root.register(validate)
 lbl_surname_user = ttk.Label(root, text="Фамилия")
 lbl_surname_user.grid(row=1, column=0, padx=15, pady=10, sticky=tk.W)
 lbl_surname_user.config(font=("Times New Roman", 12, "bold"))
-ent_surname_user = ttk.Entry(root, validate='key',validatecommand=(valid,'%S'))
+ent_surname_user = ttk.Entry(root, validate="key",validatecommand=(valid,"%S"))
 ent_surname_user.grid(row=1, column=1, padx=15, pady=10)
 ent_surname_user.config(font=("Times New Roman", 12), foreground="grey", width=30)
 
 lbl_name_user = ttk.Label(root, text="Имя")
 lbl_name_user.grid(row=2, column=0, padx=15, pady=10, sticky=tk.W)
 lbl_name_user.config(font=("Times New Roman", 12, "bold"))
-ent_name_user = ttk.Entry(root, validate='key',validatecommand=(valid,'%S'))
+ent_name_user = ttk.Entry(root, validate="key",validatecommand=(valid,"%S"))
 ent_name_user.grid(row=2, column=1, padx=15, pady=10)
 ent_name_user.config(font=("Times New Roman", 12), foreground="grey", width=30)
 

@@ -28,7 +28,7 @@ def forgot():
 
 root = tk.Tk()
 root.title("Восстановление пароля")
-root.geometry("450x250")
+root.geometry("480x250")
 root.resizable(False, False)
 root.iconphoto(True, tk.PhotoImage(file="logo.png"))
 
@@ -50,7 +50,7 @@ valid = root.register(validate)
 lbl_surname_user = ttk.Label(root, text="Фамилия")
 lbl_surname_user.grid(row=1, column=0, padx=15, pady=10, sticky=tk.W)
 lbl_surname_user.config(font=("Times New Roman", 12, "bold"))
-ent_surname_user = ttk.Entry(root, validate='key',validatecommand=(valid,'%S'))
+ent_surname_user = ttk.Entry(root, validate="key",validatecommand=(valid,"%S"))
 ent_surname_user.grid(row=1, column=1, padx=15, pady=10)
 ent_surname_user.config(font=("Times New Roman", 12), foreground="grey", width=30)
 
