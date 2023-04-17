@@ -4,7 +4,6 @@ from tkinter import ttk
 import sqlite3 as sq
 
 
-
 def verification_users():
     """
     The function checks the user's login and password when logging in.\n
@@ -22,8 +21,7 @@ def verification_users():
             mb.showinfo("Регистрация работника", "Логин или пароль не совпадает!")
         else:    
             mb.showinfo("Регистрация работника", "Вы авторизованы!")
-            root.destroy()               
-            
+            root.destroy()
 
 root = tk.Tk()
 root.title("Авторизация")

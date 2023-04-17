@@ -27,7 +27,6 @@ def save_users():
     cur.execute('''INSERT INTO users(surname, username, password) 
                    VALUES (?, ?, ?)''', 
                    (surname, username, passwd))
-
     if len(passwd) < 8:
         mb.showinfo("Сохранение", f"Данные не сохранены {username}!\nДлина пароля должна\
             быть не менее 8 символов.") 
