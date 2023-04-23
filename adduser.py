@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import messagebox as mb
 from tkinter import ttk
 import sqlite3 as sq
+import main
 
     
 
@@ -86,5 +87,7 @@ lbl_new_user.config(font=("Times New Roman", 8, "bold"))
 btn_submit_db = ttk.Button(root, text="Сохранить", width=25, command=save_users)
 btn_submit_db.grid(row=5, column=1, padx=35, pady=20, sticky=tk.NE)
 
+if __name__ == "__main__":
+    main()
 
 root.mainloop()
