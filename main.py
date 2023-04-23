@@ -28,48 +28,13 @@ with sql.connect("db/avtoservise.db") as client:
                         description FROM persone''')
     cur.execute(klient)
     records = cur.fetchall()
-    for rez in records:
-        c = list(rez)
-        print("Запись №:", c[0])
-        print("Дата:", c[1])
-        print("Фамилия:", c[2])
-        print("Имя:", c[3])
-        print("Отчество:", c[4])
-        print("Город:", c[5])
-        print("Улица:", c[6])
-        print("Телефон:", c[7])
-        print("Email:", c[8])
-        print("СТС:", c[9])
-        print("Марка автомобиля:", c[10])
-        print("Модель автомобиля:", c[11])
-        print("Гос. номер:", c[12])
-        print("Одометр:", c[13])
-        print("Неисправность:", c[14])
-        print("\n\n")
-        print("="*84+"\n\n")
+    for row in records:
+        result = "Запись №: - {0}\nДата: - {1}\nФамилия: - {2}\nИмя: - {3}\nОтчество: - {4}\n\
+Город: - {5}\nУлица: - {6}\nТелефон: - {7}\nEmail: - {8}\nСТС: - {9}\nМарка автомобиля: - {10}\n\
+Модель автомобиля: - {11}\nГос. номер: - {12}\nОдометр: - {13}\nНеисправность:\n{14}\n\n"\
+            .format(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9],
+                    row[10], row[11], row[12], row[13], row[14])
 
-        
-
-
-
-def table_klient():
-    main_text.insert(tk.END, "Запись №:", c[0:])
-    main_text.insert(tk.END, "\nДата:", c[1:])
-    main_text.insert(tk.END, "\nФамилия:", c[2])
-    main_text.insert(tk.END, "\nИмя:", c[3])
-    main_text.insert(tk.END, "\nОтчество:", c[4])
-    main_text.insert(tk.END, "\nГород:", c[5])
-    main_text.insert(tk.END, "\nУлица:", c[6])
-    main_text.insert(tk.END, "\nТелефон:", c[7])
-    main_text.insert(tk.END, "\nEmail:", c[8])
-    main_text.insert(tk.END, "\nСТС:", c[9])
-    main_text.insert(tk.END, "\nМарка автомобиля:", c[10])
-    main_text.insert(tk.END, "\nМодель автомобиля:", c[11])
-    main_text.insert(tk.END, "\nГос. номер:", c[11])
-    main_text.insert(tk.END, "\nОдометр:", c[12])
-    main_text.insert(tk.END, "\nНеисправность:", c[13])
-    main_text.insert(tk.END, "\n\n")
-    main_text.insert(tk.END, "="*84+"\n")
 
 with sql.connect("db/avtoservise.db") as bqbd:
         cur = bqbd.cursor()
@@ -135,8 +100,8 @@ main_text_lbl.grid(row=1, column=0, columnspan=5, padx=20, pady=20)
 
 main_text = tk.Text(main_frame, width=95, height=30, wrap=tk.WORD)
 main_text.grid(row=2, column=0, padx=15, pady=5)
-table_klient()
-#table_klient()
+main_text.insert(tk.END, result)
+
 
 
 scroll = tk.Scrollbar(main_frame, orient="vertical", command=main_text.yview)
