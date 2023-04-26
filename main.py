@@ -31,9 +31,30 @@ with sql.connect("db/avtoservise.db") as client:
     for row in records:
         result = "Запись №: - {0}\nДата: - {1}\nФамилия: - {2}\nИмя: - {3}\nОтчество: - {4}\n\
 Город: - {5}\nУлица: - {6}\nТелефон: - {7}\nEmail: - {8}\nСТС: - {9}\nМарка автомобиля: - {10}\n\
-Модель автомобиля: - {11}\nГос. номер: - {12}\nОдометр: - {13}\nНеисправность:\n{14}\n\n"\
+Модель автомобиля: - {11}\nГос. номер: - {12}\nОдометр: - {13}\nНеисправность:\n{14}\n"\
             .format(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9],
                     row[10], row[11], row[12], row[13], row[14])
+        
+with sql.connect("db/avtoservise.db") as client:
+    cur = client.cursor()
+    klient = ('''SELECT organisation, region, city, street, myindex, 
+                        surname, username, patronymic, phfone, fax, 
+                        email FROM service''')
+    cur.execute(klient)
+    records = cur.fetchall()
+    for row in records:
+        result = "Организация: - {0}\nРегион: - {1}\nГород: - {2}\nУлица: - {3}\nИндекс: - {4}\n\
+Фамилия: - {5}\nИмя: - {6}\nОтчество: - {7}\nТелефон: - {8}\nФакс: - {9}\nEmail: - {10}\n\n"\
+            .format(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9],
+                    row[10])
+        
+with sql.connect("db/avtoservise.db") as client:
+    cur = client.cursor()
+    klient = ('''SELECT surname FROM users''')
+    cur.execute(klient)
+    records = cur.fetchall()
+    for row in records:
+        result = "Фамилия работника: - {0}\n\n".format(row[0])
 
 
 with sql.connect("db/avtoservise.db") as bqbd:
@@ -48,14 +69,14 @@ def backupdb():
         for sql in bqbd.iterdump():
             f.write(sql)
 
-# def restore():
+def restore():
     """
     The function should restore the database from a backup\n
     Функция должна восстанавливать БД из резервной копии 
     """
-#     with open("sql_damp.sql", "r") as f:
-#         sql = f.read()
-#         cur.executescript(sql)   
+    with open("sql_damp.sql", "r") as f:
+        sql = f.read()
+        cur.executescript(sql)   
     
 
 root = tk.Tk()
@@ -85,7 +106,7 @@ third_column = tk.Menu(maim_menu, tearoff=0)
 maim_menu.add_cascade(label = "Сервис", menu=third_column)
 third_column.add_command(label="Восстановить пароль")
 third_column.add_command(label="Бэкап БД", command=backupdb)
-third_column.add_command(label="Восстановить БД")
+third_column.add_command(label="Восстановить БД", command=restore)
 
 fourth_column = tk.Menu(maim_menu, tearoff=0)
 maim_menu.add_cascade(label = "Помощь", menu=fourth_column)
