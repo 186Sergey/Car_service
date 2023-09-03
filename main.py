@@ -4,7 +4,6 @@ from tkinter import messagebox as mb
 import sqlite3 as sql
 
 
-
 def myclose():
     """
     The function asks the user if he really wants to shut down the application\n
@@ -23,9 +22,9 @@ with sql.connect("db/avtoservise.db") as requisites:
 
 with sql.connect("db/avtoservise.db") as client:
     cur = client.cursor()
-    klient = ('''SELECT rowid, mydata, surname, username, patronymic, city, street,
-                        phfone, email, sts, marka_auto, model, gos_nomer, odometr, 
-                        description FROM persone''')
+    klient = ('''SELECT persone.rowid, mydata, persone.surname, persone.username, persone.patronymic, persone.city, persone.street,
+                        persone.phfone, persone.email, sts, marka_auto, model, gos_nomer, odometr, 
+                        description FROM persone JOIN users ON persone.rowid = users.id''')
     cur.execute(klient)
     records = cur.fetchall()
     for row in records:
@@ -34,27 +33,10 @@ with sql.connect("db/avtoservise.db") as client:
 Модель автомобиля: - {11}\nГос. номер: - {12}\nОдометр: - {13}\nНеисправность:\n{14}\n"\
             .format(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9],
                     row[10], row[11], row[12], row[13], row[14])
-        
-with sql.connect("db/avtoservise.db") as client:
-    cur = client.cursor()
-    klient = ('''SELECT organisation, region, city, street, myindex, 
-                        surname, username, patronymic, phfone, fax, 
-                        email FROM service''')
-    cur.execute(klient)
-    records = cur.fetchall()
-    for row in records:
-        result = "Организация: - {0}\nРегион: - {1}\nГород: - {2}\nУлица: - {3}\nИндекс: - {4}\n\
-Фамилия: - {5}\nИмя: - {6}\nОтчество: - {7}\nТелефон: - {8}\nФакс: - {9}\nEmail: - {10}\n\n"\
-            .format(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9],
-                    row[10])
-        
-with sql.connect("db/avtoservise.db") as client:
-    cur = client.cursor()
-    klient = ('''SELECT surname FROM users''')
-    cur.execute(klient)
-    records = cur.fetchall()
-    for row in records:
-        result = "Фамилия работника: - {0}\n\n".format(row[0])
+    # for row in records:
+    #     res = "Фамилил работника: - \n{1}\n"\
+    #         .format(row[1])
+                        
 
 
 with sql.connect("db/avtoservise.db") as bqbd:
@@ -132,5 +114,6 @@ main_text.config(font=("Times New Roman", 12), padx=15, pady=10, yscrollcommand=
 statusBar = tk.Label(root, relief="sunken", anchor="w", fg="green", font=("Times New Roman", 14))
 statusBar.grid(row=10, column=0, columnspan=5, sticky="w", padx=10)
 
-               
+
+            
 root.mainloop()
