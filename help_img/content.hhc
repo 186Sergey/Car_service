@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="CHM Editor">
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+<param name="Window Styles" value="0x800027">
+<param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+  <LI> <OBJECT type="text/sitemap">
+    <param name="Name" value="Введение">
+    <param name="ImageNumber" value="1">
+    </OBJECT>
+  <UL>
+    <LI> <OBJECT type="text/sitemap">
+      <param name="Name" value="О программе">
+      <param name="Local" value="About_PO.html">
+      <param name="ImageNumber" value="1">
+      </OBJECT>
+	  <LI> <OBJECT type="text/sitemap">
+      <param name="Name" value="Меню программы">
+      <param name="Local" value="Menu.html">
+      <param name="ImageNumber" value="1">
+      </OBJECT>
+	  <LI> <OBJECT type="text/sitemap">
+      <param name="Name" value="Основное окно программы">
+      <param name="Local" value="Main_Quit.html">
+      <param name="ImageNumber" value="1">
+      </OBJECT>
+	  <LI> <OBJECT type="text/sitemap">
+      <param name="Name" value="Реквизиты СТО">
+      <param name="Local" value="Requisites.html">
+      <param name="ImageNumber" value="1">
+      </OBJECT>
+	  <LI> <OBJECT type="text/sitemap">
+      <param name="Name" value="Редактирование реквизитов СТО">
+      <param name="Local" value="EditRequisites.html">
+      <param name="ImageNumber" value="1">
+      </OBJECT>
+    <LI> <OBJECT type="text/sitemap">
+      <param name="Name" value="Регистрация работника">
+      <param name="Local" value="AddNewWorker.html">
+      <param name="ImageNumber" value="1">
+      </OBJECT>
+    <LI> <OBJECT type="text/sitemap">
+      <param name="Name" value="Авторизация работника">
+      <param name="Local" value="LogIN.html">
+      <param name="ImageNumber" value="1">
+      </OBJECT>
+    <LI> <OBJECT type="text/sitemap">
+      <param name="Name" value="Запись о клиенте и автомобиле">
+      <param name="Local" value="Client_car.html">
+      <param name="ImageNumber" value="1">
+      </OBJECT>
+	  <LI> <OBJECT type="text/sitemap">
+      <param name="Name" value="Редактирование записи о клиенте и автомобиле">
+      <param name="Local" value="EditServiceClient.html">
+      <param name="ImageNumber" value="1">
+      </OBJECT>
+    <LI> <OBJECT type="text/sitemap">
+      <param name="Name" value="Резервная копия БД">
+      <param name="Local" value="BackUP_BD.html">
+      <param name="ImageNumber" value="1">
+      </OBJECT>
+    <LI> <OBJECT type="text/sitemap">
+      <param name="Name" value="Восстановление БД">
+      <param name="Local" value="Restore_BD.html">
+      <param name="ImageNumber" value="1">
+      </OBJECT>
+	  <LI> <OBJECT type="text/sitemap">
+      <param name="Name" value="Восстановление пароля">
+      <param name="Local" value="Forgout.html">
+      <param name="ImageNumber" value="1">
+      </OBJECT>
+	  <LI> <OBJECT type="text/sitemap">
+      <param name="Name" value="Поиск">
+      <param name="Local" value="Search.html">
+      <param name="ImageNumber" value="1">
+      </OBJECT>
+  </UL>
+</UL>
+</BODY></HTML>

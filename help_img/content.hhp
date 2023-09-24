@@ -1,0 +1,62 @@
+[OPTIONS]
+Compiled file=C:\Users\XXX\Projekt\Autoservice.chm
+Contents file=C:\Users\XXX\AppData\Local\Temp\CHM Editor\Autoservice_45190,9420564468\content.hhc
+Binary Index=Yes
+Index file=index.hhk
+Default topic=page_1.html
+Title=Автосервис
+Default Window=Main
+Language=0x419 Русский (Россия)
+Full-text search=No
+[FILES]
+#CHMDir_FTimes
+_template.css
+_template.htm
+About_PO.html
+AddNewWorker.html
+AddNewWorker.jpg
+AddNewWorkerFalse.jpg
+AddNewWorkerMenu.jpg
+AddNewWorkerTrue.jpg
+AddRequisites.jpg
+AddRequisitesMenu.jpg
+AddRequisitesOk.jpg
+AddServiceClient.jpg
+AddServiceClientMenu.jpg
+AddServiceClientOk.jpg
+BackUp DB.jpg
+BackUP_BD.html
+Client_car.html
+content.hhc
+content.hhp
+EditClientMenu.jpg
+EditRequisites.html
+EditRequisitesMenu.jpg
+EditServiceClient.html
+Fargout.html
+index.hhk
+LogIN.html
+Main.jpg
+Main_Quit.html
+MainMenuEdit.jpg
+MainMenuFile.jpg
+MainMenuHelp.jpg
+MainMenuService.jpg
+Menu.html
+MenuFargout.jpg
+Quit.jpg
+QuitMenu.jpg
+Requisites.html
+Restore_BD.html
+RestoreDB.jpg
+RestorePasswd.jpg
+RestorePasswdFalse.jpg
+RestorePasswdTrue.jpg
+Search.html
+Search.jpg
+SearchMenu.jpg
+Verification_users.jpg
+Verification_users_false.jpg
+Verification_users_true.jpg
+[WINDOWS]
+Main="Автосервис","content.hhc","index.hhk","page_1.html","page_1.html",,,,,288,300,12294,[0,0,0,0],0x0000000,,,,,0,0
